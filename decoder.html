@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery.min.js"></script>
+    <style>
+        #box {
+            position: relative;
+            width: 576px;
+            height: 479px;
+            margin: 100px auto;
+            background: url(../../地图图片/QQ图片20220227104957.jpg);
+        }
+        
+        #box input:nth-child(1) {
+            position: absolute;
+            left: 170px;
+            top: 290px;
+            width: 250px;
+            height: 30px;
+        }
+        
+        #box input:nth-child(2) {
+            position: absolute;
+            left: 170px;
+            top: 350px;
+            width: 250px;
+            height: 30px;
+        }
+        
+        #box input:nth-child(3) {
+            position: absolute;
+            left: 207px;
+            width: 200px;
+            top: 320px;
+        }
+        
+        #box #translate {
+            position: absolute;
+            left: 270px;
+            top: 408px;
+            width: 50px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <input type="text" id="txt" placeholder="你必须输入汉字">
+        <input type="text" id="ana" placeholder="输入URL编码">
+        <button type="submit" id="translate">编译</button>
+    </div>
+    <script>
+        $(function() {
+
+            $('button').on('click', function() {
+                let txtVal = $('#txt').val().trim()
+                let analyze = $('#ana').val().trim()
+                let txtResult = encodeURI(txtVal);
+                let anaResult = decodeURI(analyze);
+                console.log(txtResult);
+                if (txtVal !== '' && analyze == '') {
+                    alert(txtResult);
+                }
+                if (analyze !== '' && txtVal == '') {
+                    alert(anaResult);
+                }
+                if (txtVal !== '' && analyze !== '' || txtVal == '' && analyze == '') {
+                    alert('别瞎几把点')
+                }
+
+            })
+            $('#txt,#ana').on('keydown', function(e) {
+                if (e.keyCode === 13) {
+                    if ($(this).val() === '') {
+                        alert('你不要搞...')
+                    } else {
+                        let txtVal = $('#txt').val().trim()
+                        let analyze = $('#ana').val().trim()
+                        let txtResult = encodeURI(txtVal);
+                        let anaResult = decodeURI(analyze);
+                        console.log(txtResult);
+                        if (txtVal !== '' && analyze == '') {
+                            alert(txtResult);
+                        }
+                        if (analyze !== '' && txtVal == '') {
+                            alert(anaResult);
+                        }
+                        if (txtVal !== '' && analyze !== '' || txtVal == '' && analyze == '') {
+                            alert('别瞎几把点')
+                        }
+                    }
+                }
+            })
+
+        })
+    </script>
+</body>
+
+</html>
